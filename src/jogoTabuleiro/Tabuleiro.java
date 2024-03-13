@@ -42,9 +42,21 @@ public class Tabuleiro {
         if (haUmaPeca(posicao)){
             throw new ExcecoesNoTabuleiro("já existe uma peça na posição " + posicao);
         }
-
         pecas[posicao.getLinha()][posicao.getColuna()] = peca;
         peca.posicao = posicao;
+    }
+
+    public Peca removePeca(Posicao posicao){
+        if (!posicaoExistente(posicao)){
+            throw new ExcecoesNoTabuleiro("Posição não existente no tabuleiro");
+        }
+        if (peca(posicao) == null){
+            return null;
+        }
+        Peca aux = peca(posicao);
+        aux.posicao = null;
+        pecas[posicao.getLinha()][posicao.getColuna()] = null;
+        return aux;
     }
 
     //Método auxiliar

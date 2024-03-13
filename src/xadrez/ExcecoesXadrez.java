@@ -1,8 +1,10 @@
 package xadrez;
 
+import jogoTabuleiro.ExcecoesNoTabuleiro;
+
 import java.io.Serial;
 
-public class ExcecoesXadrez extends RuntimeException{
+public class ExcecoesXadrez extends ExcecoesNoTabuleiro {
 
     @Serial
     private static final long serialVersionUID = 1L;
