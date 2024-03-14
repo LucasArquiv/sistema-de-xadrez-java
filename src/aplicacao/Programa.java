@@ -16,7 +16,7 @@ public class Programa {
 
         //teste
         //imprimindo o tabuleiro e peças
-        //logica basica para impressão do movimento das peças
+        //logica basica para impressão dos movimentos das peças
         while (true) {
             try {
                 UI.telaLimpa();
