@@ -53,16 +53,33 @@ public class UI {
         for (int i=0; i< pecas.length; i++){
             System.out.print((8 - i) + " ");
             for (int j=0; j< pecas.length; j++){
-                impressaoPeca(pecas[i][j]);
+                impressaoPeca(pecas[i][j], false);
             }
             System.out.println();
         }
         System.out.println("  a b c d e f g h ");
     }
+
+    public static void impressaoTabuleiro(PecaDeXadrez[][] pecas, boolean [][] possiveisMovimentos){
+
+        for (int i=0; i< pecas.length; i++){
+            System.out.print((8 - i) + " ");
+            for (int j=0; j< pecas.length; j++){
+                impressaoPeca(pecas[i][j], possiveisMovimentos[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h ");
+    }
+
+
     //Metodo auxiliar para imprimir uma peça
-    private static void impressaoPeca(PecaDeXadrez peca){
+    private static void impressaoPeca(PecaDeXadrez peca, boolean background){
+        if (background){
+            System.out.print(ANSI_BLUE_BACKGROUND);
+        }
         if (peca == null) {
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
         }
         else {
             if (peca.getCores() == Cores.BRANCO) {
@@ -74,4 +91,5 @@ public class UI {
         }
         System.out.print(" ");
     }
+
 }
