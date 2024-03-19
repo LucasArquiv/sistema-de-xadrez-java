@@ -49,11 +49,12 @@ public class UI {
         }
     }
 
+    // sobre-carga do método impressaoTabuleiro()
     public static void impressaoTabuleiro(PecaDeXadrez[][] pecas){
         for (int i=0; i< pecas.length; i++){
             System.out.print((8 - i) + " ");
             for (int j=0; j< pecas.length; j++){
-                impressaoPeca(pecas[i][j], false);
+                impressaoPeca(pecas[i][j],false);
             }
             System.out.println();
         }
