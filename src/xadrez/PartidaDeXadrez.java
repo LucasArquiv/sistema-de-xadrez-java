@@ -7,11 +7,16 @@ import jogoTabuleiro.Tabuleiro;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartidaDeXadrez {
 
     private int turno;
     private Cores jogadorAtual;
     private static Tabuleiro tabuleiro;
+    private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+    private List<Peca> pecaCapturadas = new ArrayList<>();
 
     public PartidaDeXadrez(){
         tabuleiro = new Tabuleiro(8, 8);
@@ -60,6 +65,12 @@ public class PartidaDeXadrez {
        Peca p = tabuleiro.removePeca(origem);
        Peca capturaPeca = tabuleiro.removePeca(destino);
        tabuleiro.lugarPecas(p,destino);
+
+       if (capturaPeca != null){
+           pecasNoTabuleiro.remove(capturaPeca);
+           pecaCapturadas.add(capturaPeca);
+       }
+
        return capturaPeca;
     }
 
@@ -68,7 +79,7 @@ public class PartidaDeXadrez {
             throw new ExcecoesXadrez("Não existe peça na posição de origem");
         }
         if (jogadorAtual != ((PecaDeXadrez)tabuleiro.peca(posicao)).getCores()){
-            throw new ExcecoesXadrez("A peça escolhida não pertence a você ");
+            throw new ExcecoesXadrez("A peça escolhida pertence ao adversário");
         }
         if (!tabuleiro.peca(posicao).possivelMovimentoExistente()){
             throw new ExcecoesXadrez("Não há movimentos possiveis para a peça escolhida");
@@ -88,6 +99,8 @@ public class PartidaDeXadrez {
 
     private void colocaNovaPeca(char coluna, int linha, PecaDeXadrez peca){
         tabuleiro.lugarPecas(peca, new PosicaoXadrez(coluna, linha).paraPosicao());
+        pecasNoTabuleiro.add(peca);
+
     }
 
     //Método responsável por iniciar as peças no tabuleiro
