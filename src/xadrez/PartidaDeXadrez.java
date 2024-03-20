@@ -9,12 +9,25 @@ import xadrez.pecas.Torre;
 
 public class PartidaDeXadrez {
 
+    private int turno;
+    private Cores jogadorAtual;
     private static Tabuleiro tabuleiro;
 
     public PartidaDeXadrez(){
         tabuleiro = new Tabuleiro(8, 8);
+        turno = 1;
+        jogadorAtual = Cores.BRANCO;
         setupInicial();
     }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public Cores getJogadorAtual() {
+        return jogadorAtual;
+    }
+
     //retorna uma matriz de peças correspondente a partida:
     public static PecaDeXadrez[][] getPecas(){
         //variavel axiliar
@@ -39,6 +52,7 @@ public class PartidaDeXadrez {
         validaOrigemPosicao(origem);
         validaDestinoPosicao(origem, destino);
         Peca capturaPeca = fazerMover(origem, destino);
+        trocaTurno();
         return (PecaDeXadrez)capturaPeca;
     }
 
@@ -49,19 +63,27 @@ public class PartidaDeXadrez {
        return capturaPeca;
     }
 
-    private static void validaOrigemPosicao(Posicao posicao){
+    private void validaOrigemPosicao(Posicao posicao){
         if (!tabuleiro.haUmaPeca(posicao)){
             throw new ExcecoesXadrez("Não existe peça na posição de origem");
+        }
+        if (jogadorAtual != ((PecaDeXadrez)tabuleiro.peca(posicao)).getCores()){
+            throw new ExcecoesXadrez("A peça escolhida não pertence a você ");
         }
         if (!tabuleiro.peca(posicao).possivelMovimentoExistente()){
             throw new ExcecoesXadrez("Não há movimentos possiveis para a peça escolhida");
         }
     }
 
-    private static void validaDestinoPosicao(Posicao origem, Posicao destino){
+    private void validaDestinoPosicao(Posicao origem, Posicao destino){
         if (!tabuleiro.peca(origem).possivelMovimento(destino)){
             throw new ExcecoesXadrez("A peça escolhida não pode se mover para a posição de destino");
         }
+    }
+
+    private void trocaTurno(){
+        turno ++;
+        jogadorAtual = (jogadorAtual == Cores.BRANCO) ? Cores.PRETO : Cores.BRANCO;
     }
 
     private void colocaNovaPeca(char coluna, int linha, PecaDeXadrez peca){
