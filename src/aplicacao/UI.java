@@ -60,6 +60,9 @@ public class UI {
         System.out.println();
         System.out.println("Turno: " + partidaDeXadrez.getTurno());
         System.out.println("Aguardando jogador: " + partidaDeXadrez.getJogadorAtual());
+        if (partidaDeXadrez.getCheck()){
+            System.out.println("CHECK!");
+        }
     }
 
     // sobrecarga do método impressaoTabuleiro()
