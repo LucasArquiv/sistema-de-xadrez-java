@@ -22,7 +22,6 @@ public class Rei extends PecaDeXadrez {
 
     @Override
     public boolean[][] possiveisMovimentos() {
-        //matriz temporariamente
         boolean [][] mat = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 
         Posicao p = new Posicao(0, 0);
