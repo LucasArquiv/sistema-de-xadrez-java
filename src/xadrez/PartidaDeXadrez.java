@@ -4,9 +4,7 @@ package xadrez;
 import jogoTabuleiro.Peca;
 import jogoTabuleiro.Posicao;
 import jogoTabuleiro.Tabuleiro;
-import xadrez.pecas.Peao;
-import xadrez.pecas.Rei;
-import xadrez.pecas.Torre;
+import xadrez.pecas.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -198,9 +196,13 @@ public class PartidaDeXadrez {
 
     //Método responsável por iniciar as peças no tabuleiro
     private void setupInicial(){
-        ////teste de checkmate
         colocaNovaPeca('a', 1, new Torre(tabuleiro, Cores.BRANCO));
+        colocaNovaPeca('b', 1, new Cavalo(tabuleiro, Cores.BRANCO));
+        colocaNovaPeca('c', 1, new Bispo(tabuleiro, Cores.BRANCO));
+        colocaNovaPeca('d', 1, new Rainha(tabuleiro, Cores.BRANCO));
         colocaNovaPeca('e', 1, new Rei(tabuleiro, Cores.BRANCO));
+        colocaNovaPeca('f', 1, new Bispo(tabuleiro, Cores.BRANCO));
+        colocaNovaPeca('g', 1, new Cavalo(tabuleiro, Cores.BRANCO));
         colocaNovaPeca('h', 1, new Torre(tabuleiro, Cores.BRANCO));
         colocaNovaPeca('a', 2, new Peao(tabuleiro, Cores.BRANCO));
         colocaNovaPeca('b', 2, new Peao(tabuleiro, Cores.BRANCO));
@@ -212,7 +214,12 @@ public class PartidaDeXadrez {
         colocaNovaPeca('h', 2, new Peao(tabuleiro, Cores.BRANCO));
 
         colocaNovaPeca('a', 8, new Torre(tabuleiro, Cores.PRETO));
+        colocaNovaPeca('b', 8, new Cavalo(tabuleiro, Cores.PRETO));
+        colocaNovaPeca('c', 8, new Bispo(tabuleiro, Cores.PRETO));
+        colocaNovaPeca('d', 8, new Rainha(tabuleiro, Cores.PRETO));
         colocaNovaPeca('e', 8, new Rei(tabuleiro, Cores.PRETO));
+        colocaNovaPeca('f', 8, new Bispo(tabuleiro, Cores.PRETO));
+        colocaNovaPeca('g', 8, new Cavalo(tabuleiro, Cores.PRETO));
         colocaNovaPeca('h', 8, new Torre(tabuleiro, Cores.PRETO));
         colocaNovaPeca('a', 7, new Peao(tabuleiro, Cores.PRETO));
         colocaNovaPeca('b', 7, new Peao(tabuleiro, Cores.PRETO));
