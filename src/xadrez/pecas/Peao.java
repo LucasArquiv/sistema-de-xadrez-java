@@ -3,12 +3,16 @@ package xadrez.pecas;
 import jogoTabuleiro.Posicao;
 import jogoTabuleiro.Tabuleiro;
 import xadrez.Cores;
+import xadrez.PartidaDeXadrez;
 import xadrez.PecaDeXadrez;
 
 public class Peao extends PecaDeXadrez {
 
-    public Peao(Tabuleiro tabuleiro, Cores cores) {
+    private PartidaDeXadrez partidaDeXadrez;
+
+    public Peao(Tabuleiro tabuleiro, Cores cores, PartidaDeXadrez partidaDeXadrez) {
         super(tabuleiro, cores);
+        this.partidaDeXadrez = partidaDeXadrez;
     }
     @Override
     public String toString() {
@@ -46,6 +50,21 @@ public class Peao extends PecaDeXadrez {
             if (getTabuleiro().posicaoExistente(p) && existePecaAdversaria(p)) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
+
+            //movimento possiveis para "en passant" peça branca
+            if (posicao.getLinha() == 3){
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+                if (getTabuleiro().posicaoExistente(esquerda) && existePecaAdversaria(esquerda)
+                        && getTabuleiro().peca(esquerda) == partidaDeXadrez.getEnPassantVuneravel()){
+                    mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
+                }
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+                if (getTabuleiro().posicaoExistente(direita) && existePecaAdversaria(direita)
+                        && getTabuleiro().peca(direita) == partidaDeXadrez.getEnPassantVuneravel()){
+                    mat[direita.getLinha() - 1][direita.getColuna()] = true;
+                }
+            }
+
         }
         else {
             //movimento de uma casa
@@ -71,6 +90,20 @@ public class Peao extends PecaDeXadrez {
             p.setValues(posicao.getLinha() + 1, posicao.getColuna() + 1);
             if (getTabuleiro().posicaoExistente(p) && existePecaAdversaria(p)) {
                 mat[p.getLinha()][p.getColuna()] = true;
+            }
+
+            //movimento possiveis para "en passant" peça preta
+            if (posicao.getLinha() == 4){
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
+                if (getTabuleiro().posicaoExistente(esquerda) && existePecaAdversaria(esquerda)
+                        && getTabuleiro().peca(esquerda) == partidaDeXadrez.getEnPassantVuneravel()){
+                    mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
+                }
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
+                if (getTabuleiro().posicaoExistente(direita) && existePecaAdversaria(direita)
+                        && getTabuleiro().peca(direita) == partidaDeXadrez.getEnPassantVuneravel()){
+                    mat[direita.getLinha() + 1][direita.getColuna()] = true;
+                }
             }
         }
         return mat;

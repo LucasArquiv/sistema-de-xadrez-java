@@ -86,7 +86,7 @@ public class Rei extends PecaDeXadrez {
             mat[p.getLinha()][p.getColuna()] = true;
         }
 
-        //Movimento especial Roque
+        //Movimento especial "Roque"
         if (getContarMovimento() == 0 && !partidaDeXadrez.getCheck()) {
             // Roque do lado Rei
             Posicao posT1 = new Posicao(posicao.getLinha(), posicao.getColuna() + 3);
