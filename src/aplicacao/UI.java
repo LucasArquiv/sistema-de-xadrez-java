@@ -59,7 +59,7 @@ public class UI {
         impressaoPecacapturada(capturada);
         System.out.println();
         System.out.println("Turno: " + partidaDeXadrez.getTurno());
-        if (!partidaDeXadrez.getCheckMate()) {
+        if (partidaDeXadrez.getCheckMate()) {
             System.out.println("Aguardando jogador: " + partidaDeXadrez.getJogadorAtual());
             if (partidaDeXadrez.getCheck()) {
                 System.out.println("CHECK!");

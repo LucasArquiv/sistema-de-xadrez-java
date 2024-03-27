@@ -20,7 +20,7 @@ public class Programa {
         //teste
         //imprimindo o tabuleiro e peças
         //logica basica para impressão dos movimentos das peças
-        while (!partidaDeXadrez.getCheckMate()) {
+        while (partidaDeXadrez.getCheckMate()) {
             try {
                 UI.telaLimpa();
                 UI.impressaoDaPartida(partidaDeXadrez, capturada);
