@@ -44,8 +44,12 @@ public class Programa {
                 }
                 if (partidaDeXadrez.getPromocao() != null){
                     System.out.print("Escolha a promoção da peça (B/C/T/Q): ");
-                    String tipo = sc.nextLine();
-                    partidaDeXadrez.substituirPromocaoPeca(tipo);
+                    String tipo = sc.nextLine().toUpperCase();
+                    while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("Q")){
+                        System.out.print("Valor invalido! Escolha a promoção da peça (B/C/T/Q): ");
+                        tipo = sc.nextLine().toUpperCase();
+                    }
+                        partidaDeXadrez.substituirPromocaoPeca(tipo);
                 }
             }
             catch (ExcecoesXadrez | InputMismatchException e) {
