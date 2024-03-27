@@ -42,6 +42,11 @@ public class Programa {
                 if (capturaPeca != null){
                     capturada.add(capturaPeca);
                 }
+                if (partidaDeXadrez.getPromocao() != null){
+                    System.out.print("Escolha a promoção da peça (B/C/T/Q): ");
+                    String tipo = sc.nextLine();
+                    partidaDeXadrez.substituirPromocaoPeca(tipo);
+                }
             }
             catch (ExcecoesXadrez | InputMismatchException e) {
                 System.out.println(e.getMessage());
