@@ -59,7 +59,7 @@ public class UI {
         impressaoPecacapturada(capturada);
         System.out.println();
         System.out.println("Turno: " + partidaDeXadrez.getTurno());
-        if (partidaDeXadrez.getCheckMate()) {
+        if (!partidaDeXadrez.getCheckMate()) {
             System.out.println("Aguardando jogador: " + partidaDeXadrez.getJogadorAtual());
             if (partidaDeXadrez.getCheck()) {
                 System.out.println("CHECK!");
@@ -69,10 +69,9 @@ public class UI {
                 System.out.println("CHECKMATE!");
                 System.out.println("Vencedor: " + partidaDeXadrez.getJogadorAtual());
             }
+
         }
 
-
-    // sobrecarga do método impressaoTabuleiro()
     public static void impressaoTabuleiro(PecaDeXadrez[][] pecas){
         for (int i=0; i< pecas.length; i++){
             System.out.print((8 - i) + " ");
@@ -85,7 +84,6 @@ public class UI {
     }
 
     public static void impressaoTabuleiro(PecaDeXadrez[][] pecas, boolean [][] possiveisMovimentos){
-
         for (int i=0; i< pecas.length; i++){
             System.out.print((8 - i) + " ");
             for (int j=0; j< pecas.length; j++){

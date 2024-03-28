@@ -125,7 +125,6 @@ public class PartidaDeXadrez {
         if (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("Q")) {
             return promocao;
         }
-
         Posicao pos = promocao.getPosicaoXadrez().paraPosicao();
         Peca p = tabuleiro.removePeca(pos);
         pecasNoTabuleiro.remove(p);
